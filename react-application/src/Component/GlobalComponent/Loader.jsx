@@ -1,4 +1,4 @@
-const LoaderPage = () => {
+const Loader = () => {
 	return (
 		<>
 			<div className="overlay">
@@ -13,4 +13,4 @@ const LoaderPage = () => {
 		</>
 	);
 };
-export default LoaderPage;
+export default Loader;

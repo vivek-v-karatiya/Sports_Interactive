@@ -4,11 +4,13 @@ import PlayerCard from "./Component/PlayerCard";
 import { axiosGetApiHelper } from "./Helper/Api/AxiosHelper";
 import { AlertError } from "./Global/Toaster/Alert";
 import { ToastContainer } from "react-toastify";
+import Loader from "./Component/GlobalComponent/Loader";
 
 const App = () => {
 	const [playerList, setPlayerList] = useState([]);
 	const [filteredPlayerList, setFilteredPlayerList] = useState([]);
 	const [playerFilterText, setPlayerFilterText] = useState("");
+	const [loader, setLoader] = useState("d-none");
 	const searchText = useRef("");
 
 	useEffect(() => {
@@ -20,6 +22,7 @@ const App = () => {
 	});
 
 	const callWileLoad = async () => {
+		setLoader("d-block");
 		try {
 			const playerData = await axiosGetApiHelper(
 				"https://api.npoint.io/20c1afef1661881ddc9c"
@@ -41,6 +44,7 @@ const App = () => {
 		} catch (error) {
 			AlertError("Something went wrong..!");
 		}
+		setLoader("d-none");
 	};
 
 	const sortArrayAscending = (array) => {
@@ -121,6 +125,9 @@ const App = () => {
 			</div>
 			<div className="container">
 				<div className="row">{dataCardArray}</div>
+			</div>
+			<div className={`${loader}`}>
+				<Loader></Loader>
 			</div>
 			<ToastContainer />
 		</div>
