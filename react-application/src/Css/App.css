@@ -1,0 +1,214 @@
+@import url("https://fonts.googleapis.com/css2?family=Baloo+Paaji+2:wght@400;500&display=swap");
+
+body {
+	background-color: #5a5a5a;
+}
+
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap");
+
+:root {
+	--font: "Inter", sans-serif;
+}
+
+/* SEARCH BAR CONTAINER */
+.search-local {
+	margin-top: 3.8%;
+	width: 82%;
+	margin-left: 9%;
+	display: flex;
+	align-items: center;
+	column-gap: 2rem;
+	padding-left: 2rem;
+	background: #fbfbfb;
+	border-radius: 1rem;
+	min-height: 7rem;
+	height: auto;
+	border-right: none;
+	text-align: center;
+}
+
+/* ICON */
+.icon {
+	color: #5a5a5a;
+	font-size: 3.5rem;
+	display: flex;
+	align-items: center;
+	cursor: pointer;
+}
+
+.icon:hover {
+	animation: funny-icon 0.4s ease-in-out;
+}
+
+@keyframes funny-icon {
+	0% {
+		scale: 1;
+	}
+
+	50% {
+		scale: 0.8;
+		transform-origin: bottom;
+		transform: rotate(-15deg);
+	}
+
+	100% {
+		scale: 1;
+	}
+}
+
+/* INPUT */
+.search-local input {
+	height: 100%;
+	width: 100%;
+	flex: 1 1 25rem;
+	background: #fbfbfb;
+	display: flex;
+	outline: none;
+	border: none;
+	color: #292929;
+	font-size: 2.4rem;
+}
+
+input[type="text"]::placeholder {
+	color: #292929;
+	font-size: 2.4rem;
+}
+
+/* BUTTON */
+.search-local button {
+	background: rgba(235, 25, 110, 1);
+	border: none;
+	border-radius: 0 1rem 1rem 0;
+	font-weight: 500;
+	font-size: 2.4rem;
+	height: 7rem;
+	width: 18rem;
+	cursor: pointer;
+	transition: all 0.3s;
+	text-align: center;
+	color: #fbfbfb;
+}
+
+.search-local button .search-icon {
+	display: none;
+}
+
+.search-local button:hover {
+	letter-spacing: 0.5rem;
+}
+
+@media (max-width: 641px) {
+	.template__container {
+		margin-top: -200px !important;
+	}
+}
+
+/* MEDIAS */
+@media (max-width: 575px) {
+	.search-local {
+		padding-left: 0;
+		column-gap: 0.25rem;
+	}
+
+	.search-local button {
+		width: 10rem;
+	}
+
+	button a {
+		display: none;
+	}
+
+	.search-local button .search-icon {
+		display: block;
+		margin-inline: auto;
+		color: #fbfbfb;
+		font-size: 3rem;
+	}
+
+	input[type="text"]::placeholder {
+		font-size: 1.7rem;
+	}
+}
+
+.header__search {
+	width: 100%;
+	background-color: #5a5a5a;
+	display: flex;
+	flex-direction: column;
+	min-height: 20vh;
+}
+
+.container {
+	background-color: #5a5a5a;
+}
+.template__container {
+	display: grid;
+	grid-template-columns: 90%;
+	justify-content: center;
+	align-items: center;
+	height: 100vh;
+	font-family: "Baloo Paaji 2", cursive;
+}
+
+.template__card {
+	background-color: #222831;
+	height: 57rem;
+	border-radius: 5px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	box-shadow: rgba(0, 0, 0, 0.7);
+	color: white;
+}
+
+.player__name {
+	margin-top: 25px;
+	font-size: 2.25em;
+}
+
+.player__skill {
+	margin-top: -25px;
+	font-size: 3.75em;
+	color: rgba(235, 25, 110, 1);
+}
+
+.player__value {
+	margin-top: -22px;
+	font-size: 1.9em;
+}
+.horizontal__row {
+	margin-top: -5px;
+	border-color: rgba(235, 25, 110, 1);
+	width: 90%;
+}
+
+.upcoming__match {
+	margin-top: -10px;
+	font-size: 2em;
+}
+.upcoming__match__data {
+	margin-top: -10px;
+	font-size: 1.5em;
+	font-weight: lighter;
+}
+.upcoming__match__time {
+	margin-top: -5px;
+	font-size: 1.25em;
+	font-weight: lighter;
+}
+
+.card__image {
+	height: 230px;
+	width: 230px;
+	border-radius: 10%;
+	border: 2px solid #272133;
+	margin-top: 35px;
+	box-shadow: 0 10px 50px rgba(235, 25, 110, 1);
+}
+
+.grid-container {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	grid-gap: 20px;
+	font-size: 1.2em;
+}
