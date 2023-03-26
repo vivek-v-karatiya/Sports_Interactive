@@ -93,15 +93,20 @@ const App = () => {
 	const FilterTextChange = (e) => {
 		setPlayerFilterText(e.target.value);
 		searchText.current = e.target.value;
-		CallDeBouncer();
+		if (e.target.value) {
+			CallDeBouncer();
+		} else {
+			clearButtonElement.current.setAttribute("disabled", true);
+			setFilteredPlayerList(playerList.current);
+		}
 	};
 
 	const ClearFilter = () => {
-		clearButtonElement.current.setAttribute("disabled", true);
 		if (searchText.current) {
+			setFilteredPlayerList(playerList.current);
 			setPlayerFilterText("");
 			searchText.current = "";
-			CallDeBouncer();
+			clearButtonElement.current.setAttribute("disabled", true);
 		}
 	};
 
