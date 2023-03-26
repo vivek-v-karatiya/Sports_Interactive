@@ -5,13 +5,14 @@ import { axiosGetApiHelper } from "./Helper/Api/AxiosHelper";
 import { AlertError } from "./Global/Toaster/Alert";
 import { ToastContainer } from "react-toastify";
 import Loader from "./Component/GlobalComponent/Loader";
+import { ApiList } from "./ApiEndPoints";
 
 const App = () => {
-	const [playerList, setPlayerList] = useState([]);
 	const [filteredPlayerList, setFilteredPlayerList] = useState([]);
 	const [playerFilterText, setPlayerFilterText] = useState("");
 	const [loader, setLoader] = useState("d-none");
 	const searchText = useRef("");
+	const playerList = useRef([]);
 
 	useEffect(() => {
 		callWileLoad();
@@ -24,18 +25,16 @@ const App = () => {
 	const callWileLoad = async () => {
 		setLoader("d-block");
 		try {
-			const playerData = await axiosGetApiHelper(
-				"https://api.npoint.io/20c1afef1661881ddc9c"
-			);
+			const playerData = await axiosGetApiHelper(ApiList().getPlayerList);
 			if (playerData?.status === 200) {
 				if (playerData?.data?.playerList.length > 0) {
 					let sortedArray = sortArrayAscending(
 						playerData?.data?.playerList
 					);
-					setPlayerList(sortedArray);
+					playerList.current = sortedArray;
 					setFilteredPlayerList(sortedArray);
 				} else {
-					setPlayerList([]);
+					playerList.current = [];
 					setFilteredPlayerList([]);
 				}
 			} else {
@@ -59,8 +58,9 @@ const App = () => {
 
 	const FilterData = () => {
 		const searchData = searchText.current.toLocaleUpperCase();
+		const playerData = playerList.current;
 		if (searchData) {
-			let newArray = playerList.filter(function (object) {
+			let newArray = playerData.filter(function (object) {
 				return (
 					object.TName.toLocaleUpperCase() === searchData ||
 					object.PFName.toLocaleUpperCase() === searchData
@@ -68,7 +68,7 @@ const App = () => {
 			});
 			setFilteredPlayerList(newArray);
 		} else {
-			setFilteredPlayerList(playerList);
+			setFilteredPlayerList(playerData);
 		}
 	};
 
