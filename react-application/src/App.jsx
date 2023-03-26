@@ -11,6 +11,7 @@ const App = () => {
 	const [filteredPlayerList, setFilteredPlayerList] = useState([]);
 	const [playerFilterText, setPlayerFilterText] = useState("");
 	const [loader, setLoader] = useState("d-none");
+	const clearButtonElement = useRef();
 	const searchText = useRef("");
 	const playerList = useRef([]);
 
@@ -23,6 +24,7 @@ const App = () => {
 	});
 
 	const callWileLoad = async () => {
+		clearButtonElement.current.setAttribute("disabled", true);
 		setLoader("d-block");
 		try {
 			const playerData = await axiosGetApiHelper(ApiList().getPlayerList);
@@ -60,6 +62,7 @@ const App = () => {
 		const searchData = searchText.current.toLocaleUpperCase();
 		const playerData = playerList.current;
 		if (searchData) {
+			clearButtonElement.current.removeAttribute("disabled");
 			let newArray = playerData.filter(function (object) {
 				return (
 					object.TName.toLocaleUpperCase() === searchData ||
@@ -68,6 +71,7 @@ const App = () => {
 			});
 			setFilteredPlayerList(newArray);
 		} else {
+			clearButtonElement.current.setAttribute("disabled", true);
 			setFilteredPlayerList(playerData);
 		}
 	};
@@ -93,6 +97,7 @@ const App = () => {
 	};
 
 	const ClearFilter = () => {
+		clearButtonElement.current.setAttribute("disabled", true);
 		if (searchText.current) {
 			setPlayerFilterText("");
 			searchText.current = "";
@@ -118,6 +123,7 @@ const App = () => {
 						onClick={() => {
 							ClearFilter("");
 						}}
+						ref={clearButtonElement}
 					>
 						Clear
 					</button>
